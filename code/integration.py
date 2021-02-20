@@ -24,6 +24,14 @@ def simpson_integration(x_initial,x_final,function,h=0.001):
         s1=s1+y[2*i-2]+4*y[2*i-1]+y[2*i]
     return h*s1/3
 
+def monte_carlo(function,lower,upper,N=10000,samples=100):
+    z=np.zeros(samples)
+    for i in range(samples):
+        x=np.random.uniform(lower,upper,N)
+        z[i]=(upper-lower)/N*np.sum(function(x))
+    return np.mean(z)
+
+
 def monte_carlo_integration(function,density_x,x_function_y,N=10000):
     y=np.random.rand(N)
     x=x_function_y(y)
